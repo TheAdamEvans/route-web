@@ -20,11 +20,13 @@ app.config.update(dict(
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
 
+
 def connect_db():
     """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
+
 
 def get_db():
     """Opens a new database connection if there is none yet for the
@@ -61,12 +63,6 @@ def search():
             return redirect(url_for('show_entries'))
     return render_template('search.html', error=error)
 
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    flash('You were logged out')
-    return redirect(url_for('show_entries'))
 
 if __name__ == '__main__':
     # initialize the database???
