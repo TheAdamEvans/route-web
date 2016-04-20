@@ -3,7 +3,7 @@
 import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
+     render_template, flash, send_from_directory
 
 # create our little application :)
 app = Flask(__name__)
@@ -15,6 +15,11 @@ app.config.update(dict(
     SECRET_KEY='cookie'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 def connect_db():
     """Connects to the specific database."""
