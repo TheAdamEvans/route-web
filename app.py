@@ -14,9 +14,9 @@ app.config.update(dict(
     DEBUG=False,
     SECRET_KEY='cookie'
 ))
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+# app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-@app.route('/favicon.ico', methods = ['GET'])
+@app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
 
