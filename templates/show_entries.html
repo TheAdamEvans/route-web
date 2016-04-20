@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class="entries">
+  {% for entry in entries %}
+    <li><h2><a href={{ entry.url }}>{{ entry.name }}</a></h2>
+    {{entry.rateYDS}}<br>
+    {{entry.feet}}ft<br>
+  {% else %}
+    <li><em>Too rad for this database at this time.</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
