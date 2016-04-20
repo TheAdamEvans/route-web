@@ -16,10 +16,9 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-@app.route('/favicon.ico')
+@app.route('/favicon.ico', methods = ['GET'])
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
 
 def connect_db():
     """Connects to the specific database."""
