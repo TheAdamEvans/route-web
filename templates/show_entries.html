@@ -1,12 +1,59 @@
 {% extends "layout.html" %}
 {% block body %}
-  <ul class="entries">
-  {% for entry in entries %}
-    <li><h2><a href={{ entry.url }}>{{ entry.name }}</a></h2>
-    {{entry.rateYDS}}<br>
-    {{entry.feet}}ft<br>
+  <ul class="headz">
+  {% for head in headz %}
+    <p><i>Showing climbs similar to...</i></p>
+    <h3>{{head.name}}</h3>
+    {{head.keyword}}<br><br>
   {% else %}
     <li><em>Too rad for this database at this time.</em>
   {% endfor %}
   </ul>
+
+  <ul class="entries">
+  {% for entry in entries %}
+  <br>
+  <div style="float: left; clear: left">
+    <img
+      src="http://www.mountainproject.com{{ entry.img_src }}"
+      {% if entry.img_width %}
+        width="{{entry.width}}"
+        height="{{entry.height}}"
+      {% else %}
+        width="164"
+      {% endif %}
+      
+      {% if entry.img_height %}
+        height="{{entry.height}}"
+      {% else %}
+        height="220"
+      {% endif %}
+
+      align="left"
+    >
+    <li><h2><a href="http://www.mountainproject.com/v/{{ entry.href }}">{{ entry.name }}</a></h2>
+    {% if entry.rateYDS %}
+      <p>{{entry.rateYDS}}</p>
+    {% endif %}
+
+    {% if entry.rateHueco %}
+      <p>{{entry.rateHueco}}</p>
+    {% endif %}
+
+    {% if entry.feet %}
+      <p>{{entry.feet}}ft</p>
+    {% endif%}
+
+    <p>{{entry.keyword}}</p>
+    <br><br>
+  </div>
+  
+  {% endfor %}
+  </ul>
 {% endblock %}
+
+
+<div>
+    <p style="float: left;"><img src="http://placekitten.com/g/200/200" height="200px" width="200px" border="1px"></p>
+    <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
+</div>

@@ -5,7 +5,6 @@ from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, send_from_directory
 
-# create our little application :)
 app = Flask(__name__)
 
 # Load default config and override config from an environment variable
@@ -14,12 +13,10 @@ app.config.update(dict(
     DEBUG=False,
     SECRET_KEY='cookie'
 ))
-# app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
-
 
 def connect_db():
     """Connects to the specific database."""
@@ -47,10 +44,15 @@ def close_db(error):
 @app.route('/show')
 def show_entries():
     db = get_db()
-    recco_query = "select * from climb where origin_id = '"+session['href_id']+"' order by best desc"
+    head_query = "select * from climb where origin_href = '"+session['href']+"' and href = '"+session['href']+"'order by best desc"
+    cur = db.execute(head_query)
+    headz = cur.fetchall()
+
+    recco_query = "select * from climb where origin_href = '"+session['href']+"' and href != '"+session['href']+"'order by best desc"
     cur = db.execute(recco_query)
     entries = cur.fetchall()
-    return render_template('show_entries.html', entries=entries)
+
+    return render_template('show_entries.html', entries=entries, headz=headz)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -58,12 +60,11 @@ def search():
     error = None
     if request.method == 'POST':
         if True:
-            session['href_id'] = request.form['href']
-            flash('looking for ' + session['href_id'])
+            session['href'] = request.form['href']
+            flash('looking for ' + session['href'])
             return redirect(url_for('show_entries'))
     return render_template('search.html', error=error)
 
 
 if __name__ == '__main__':
-    # initialize the database???
     app.run()
