@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h3>Input your favorite climb!</h3>
+  <p>Go to <a href="http://www.mountainproject.com/v/">Mountain Project</a> and locate link to a route you love.</p>
   <i>Egghead</i><br>
   <i>http://www.mountainproject.com/v/egghead/</i><b>105734840</b><br>
   <form action="{{ url_for('search') }}" method="post">
@@ -11,6 +11,6 @@
     </dl>
   </form>
   <p><i>Note: Limited to climbs in SF Bay Area (for testing)</i></p><br>
-  <p>Special thanks to Dean Wyatte, Steven Rouk, and the Analyze Boulder community</p>
-  <p>All data from http://www.mountainproject.com</p>
+  <p>Special thanks to Dean Wyatte, Steven Rouk, and the Analyze Boulder community</p><br>
+  <p>Star this repo on <a href="https://github.com/TheAdamEvans/RouteRobot">Github</a>!!</p>
 {% endblock %}
