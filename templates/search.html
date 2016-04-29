@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
   <h3>Input your favorite climb!</h3>
-  <i>Kor's Flake</i><br>
-  <i>www.mountainproject.com/v/kors-flake/</i><b>105749071</b><br>
+  <i>Egghead</i><br>
+  <i>http://www.mountainproject.com/v/egghead/</i><b>105734840</b><br>
   <form action="{{ url_for('search') }}" method="post">
     <dl>
       <dt>Mountain Project ID:
@@ -10,6 +10,7 @@
       <dd><input type="submit" value="Get Climbs">
     </dl>
   </form>
-  <p><i>Note: Limited to climbs in Colorado (for now)</i></p><br>
+  <p><i>Note: Limited to climbs in SF Bay Area (for testing)</i></p><br>
   <p>Special thanks to Dean Wyatte, Steven Rouk, and the Analyze Boulder community</p>
+  <p>All data from http://www.mountainproject.com</p>
 {% endblock %}
