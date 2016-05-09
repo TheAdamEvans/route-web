@@ -5,8 +5,6 @@ import pickle
 import numpy as np
 import pandas as pd
 from collections import Counter
-from scipy.sparse import csr_matrix
-from scipy.linalg import norm
 
 hueco = re.compile(r'V([(easy)\d\+\-]*)')
 yds = re.compile(r'5\.([\d]+[\+\-abcd]*)')
