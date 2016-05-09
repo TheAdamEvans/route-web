@@ -65,6 +65,24 @@ def search():
             return redirect(url_for('show_entries'))
     return render_template('search.html', error=error)
 
+@app.route('/r/<href>')
+def direct_link_to_route(href=None):
+    db = get_db()
+    head_query = "\
+    select * from climb \
+    where origin_href = '"+href+"' \
+    and href = '"+href+"'\
+    order by best desc\
+    "
+    cur = db.execute(head_query)
+    headz = cur.fetchall()
+
+    recco_query = "select * from climb where origin_href = '"+href+"' and href != '"+href+"'order by best desc"
+    cur = db.execute(recco_query)
+    entries = cur.fetchall()
+
+    return render_template('show_entries.html', entries=entries, headz=headz)
+
 
 if __name__ == '__main__':
     app.run()
