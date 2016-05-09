@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<ul class="recco">
+<div class="container-fluid">
+  
+{% for _, entry in recco.iterrows() %}
+<div class="row" cellpadding = "10">
+  <div class="col-md-3 col-xs-12">
+    <div align = "center">
+      {% if entry.img_src %}
+      <img
+        src="http://www.mountainproject.com{{ entry.img_src }}"
+        href="http://www.mountainproject.com/v/{{ entry.href }}"
+        {% if entry.img_width %}
+          width="{{entry.img_width}}"
+        {% else %}
+          width="164"
+        {% endif %}
+        {% if entry.img_height %}
+          height="{{entry.img_height}}"
+        {% else %}
+          height="220"
+        {% endif %}
+      >
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-md-1 col-xs-12"></div>
+  <div class="col-md-7 col-xs-12">
+    <h3><a href="http://www.mountainproject.com/v/{{ entry.href }}">{{ entry.dest_name }}</a></h3>
+    <h5><a href="http://www.mountainproject.com/v/{{ entry.parent_href }}">{{ entry.parent_name }}</a></h5>
+    <p>{{entry.keyword}}</p>
+    <p>{{entry.parent_keyword}}</p>
+    <h4><b>{{entry.state_name}}</b></h4>
+    {% if entry.rateYDS %}
+      <p>{{entry.rateYDS}}</p>
+    {% endif %}
+    {% if entry.rateHueco %}
+      <p>{{entry.rateHueco}}</p>
+    {% endif %}
+    {% if entry.staraverage %}
+      <p>{{entry.staraverage}} stars</p>
+    {% endif%}
+  </div>
+  <div class="col-md-1 col-xs-12"></div>
+</div>
+{% endfor %}
+
+
+</div>
+</ul>
+{% endblock %}
