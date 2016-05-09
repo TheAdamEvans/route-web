@@ -1,18 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
-  <p>Go to <a href="http://www.mountainproject.com/v/">Mountain Project</a> and locate link to a route you love.</p>
-  <img src="http://www.mountainproject.com/images/37/96/105863796_medium_e6977e.jpg"</img><br><br>
-  <i>Guppy</i><br>
-  <i>http://www.mountainproject.com/v/guppy/</i><b>105763794</b><br>
-  <form action="{{ url_for('search') }}" method="post">
-    <dl>
-      <dt>Mountain Project ID:
-      <dd><input type="text" name="href">
-      <dd><input type="submit" value="Get Climbs">
-    </dl>
-  </form>
-  <p><i>Note: Limited to climbs in Colorado (for testing)</i></p><br>
-  <p>Special thanks to Dean Wyatte, Steven Rouk, and the Analyze Boulder community.</p>
-  <p>Thanks also to Mountain Project and its dedicated contributors.</p>
-  <p>Star this repo on <a href="https://github.com/TheAdamEvans/RouteRobot">Github</a>!!</p>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<div class="container-fluid" align="center", padding="30">
+    <br><br>
+    <img src="static/RouteRobot.png" width="272" height="272"</img>
+    <br><br><br>
+    <div class="row">
+        <form class="col-md-offset-2 col-md-8" action="{{ url_for('search') }}" method="post">
+          <dl>
+            <dd><input class="form-control" type="text" name="query" placeholder="KY pumpy overhung 5.11"><br>
+            <dd><input class="btn btn-default" type="submit" value="Get Climbs">
+          </dl>
+        </form>
+    </div>
+    <br>
+    <p><i>Pro Tip: Use state abbreviations like CO or NY for faster results</i></p><br>
+    <p>Special thanks to Dean Wyatte, Steven Rouk, and the Analyze Boulder community.</p>
+    <p>Thanks also to <a href="http://www.mountainproject.com/v/">Mountain Project</a> and its dedicated contributors.</p>
+    <p>Star this repo on <a href="https://github.com/TheAdamEvans/RouteRobot">Github</a>!!</p>
+</div>
 {% endblock %}
