@@ -1,3 +1,5 @@
+numpy==1.11.0
+pandas==0.18.1
 Flask==0.10.1
 gunicorn==19.4.5
 itsdangerous==0.24
